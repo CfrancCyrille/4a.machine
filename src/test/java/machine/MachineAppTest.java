@@ -11,5 +11,7 @@ public class MachineAppTest {
 		MachineApp.main(new String[0]);
 		assertTrue(true);
 	}
+	@Test
+	
 
 }
