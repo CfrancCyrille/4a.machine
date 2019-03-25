@@ -1,3 +1,5 @@
+// les commandes données à la machine pour definir les ordres"
+
 package machine;
 
 import java.util.HashSet;
