@@ -1,3 +1,5 @@
+// la libraire des etats de la machine//
+
 package machine;
 
 public final class MachinesLibrary {
