@@ -1,3 +1,6 @@
+//le code déclanche la machine, l'entrée est la suite binaire 010000110101#010000110101//
+
+
 package machine;
 
 public class MachineApp {
