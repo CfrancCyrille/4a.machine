@@ -15,7 +15,12 @@ public class TuringMachine {
 	private String tape;
 	private String currentState;
 	private int currentSymbol;
-
+	
+	/**
+	 * Une sous classe permettant de créer les transitions de la machine de Turing
+	 * 
+	 *
+	 */
 	class Transition {
 		String readState;
 		char readSymbol;
@@ -32,6 +37,9 @@ public class TuringMachine {
 		}
 	}
 
+	/**
+	 * Un constructeur qui permet de créer une machine de Turing
+	 */
 	public TuringMachine() {
 		stateSpace = new HashSet<String>();
 		transitionSpace = new HashSet<Transition>();
@@ -43,6 +51,12 @@ public class TuringMachine {
 		currentSymbol = 0;
 	}
 
+	/**
+	 * Fonction de lancement de la machine de Turing
+	 * @param input l'input au lancement de la machine
+	 * @param silentmode
+	 * @return Un boolean qui vérifie si tout s'est bien passé , si létat actuel est accepté ou non
+	 */
 	public boolean run(String input, boolean silentmode) {
 		currentState = startState;
 		tape = input;
@@ -103,7 +117,12 @@ public class TuringMachine {
 		}
 
 	}
-
+	
+	/**
+	 * 
+	 * @param newState ajoute un état à la machine si celui-ci n'est pas déjà présent
+	 * @return true si l'état a été ajouté car non présent , false sinon
+	 */
 	public boolean addState(String newState) {
 		if (stateSpace.contains(newState)) {
 			return false;
@@ -113,6 +132,11 @@ public class TuringMachine {
 		}
 	}
 
+	/**
+	 * Définie l'état de départ sur l'état choisi si celui-ci existe
+	 * @param newStartState
+	 * @return true si l'état existe et peut etre défini comme état de départ, false sinon
+	 */
 	public boolean setStartState(String newStartState) {
 		if (stateSpace.contains(newStartState)) {
 			startState = newStartState;
@@ -122,6 +146,11 @@ public class TuringMachine {
 		}
 	}
 
+	/**
+	 * 
+	 * @param newAcceptState
+	 * @return true si l'état est accepté et false sinon
+	 */
 	public boolean setAcceptState(String newAcceptState) {
 		if (stateSpace.contains(newAcceptState) && !rejectState.equals(newAcceptState)) {
 			acceptState = newAcceptState;
@@ -141,6 +170,15 @@ public class TuringMachine {
 		}
 	}
 
+	/**
+	 * Ajoute une transition entre deux états qui permet de crypter la lettre
+	 * @param rState 
+	 * @param rSymbol 
+	 * @param wState
+	 * @param wSymbol
+	 * @param mDirection
+	 * @return true si la transition a bien été crée , false sinon
+	 */
 	public boolean addTransition(String rState, char rSymbol, String wState, char wSymbol, boolean mDirection) {
 		if (!stateSpace.contains(rState) || !stateSpace.contains(wState)) {
 			return false;
