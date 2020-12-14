@@ -1,4 +1,8 @@
 package machine;
+/**
+ * Class of the Enigma machine, it can check if a transition programme is valid or not
+ * by the run method
+ */
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -43,6 +47,12 @@ public class TuringMachine {
 		currentSymbol = 0;
 	}
 
+	/**
+	 *
+	 * @param input MachineLibrary with all the settings
+	 * @param silentmode Cal enable Verbose
+	 * @return return true or false depending on if the symbol is check or not
+	 */
 	public boolean run(String input, boolean silentmode) {
 		currentState = startState;
 		tape = input;
@@ -104,6 +114,11 @@ public class TuringMachine {
 
 	}
 
+	/**
+	 *
+	 * @param newState add a new state if it's not contained
+	 * @return return true or false depending on if it need to add the state or not
+	 */
 	public boolean addState(String newState) {
 		if (stateSpace.contains(newState)) {
 			return false;
@@ -113,6 +128,11 @@ public class TuringMachine {
 		}
 	}
 
+	/**
+	 *
+	 * @param newStartState add a new startState if it's not contained
+	 * @return return true or false depending on if it need to add the startState or not
+	 */
 	public boolean setStartState(String newStartState) {
 		if (stateSpace.contains(newStartState)) {
 			startState = newStartState;
@@ -122,6 +142,11 @@ public class TuringMachine {
 		}
 	}
 
+	/**
+	 *
+	 * @param newAcceptState state needed to be check
+	 * @return return true or false depending on if it's contained by the stateSpace and if it's not reject (return true)
+	 */
 	public boolean setAcceptState(String newAcceptState) {
 		if (stateSpace.contains(newAcceptState) && !rejectState.equals(newAcceptState)) {
 			acceptState = newAcceptState;
@@ -132,6 +157,11 @@ public class TuringMachine {
 
 	}
 
+	/**
+	 *
+	 * @param newRejectState add a state to the reject state list
+	 * @return return true or false depending on if it's contained by the stateSpace and if it's not reject (return true)
+	 */
 	public boolean setRejectState(String newRejectState) {
 		if (stateSpace.contains(newRejectState) && !acceptState.equals(newRejectState)) {
 			rejectState = newRejectState;
@@ -141,6 +171,15 @@ public class TuringMachine {
 		}
 	}
 
+	/**
+	 *
+	 * @param rState startState
+	 * @param rSymbol stateSpace
+	 * @param wState write state
+	 * @param wSymbol write symbol
+	 * @param mDirection transition direction
+	 * @return return true or false depending on the if the given transition is valid or not
+	 */
 	public boolean addTransition(String rState, char rSymbol, String wState, char wSymbol, boolean mDirection) {
 		if (!stateSpace.contains(rState) || !stateSpace.contains(wState)) {
 			return false;

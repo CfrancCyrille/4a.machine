@@ -1,7 +1,16 @@
 package machine;
 
+/**
+ * Provide all the settings for the TuringMachine.java
+ */
+
 public final class MachinesLibrary {
 
+	/**
+	 * This function is necessary to run the TuringMachine
+	 * @return it return a string with all the Accept/Reject states and transition
+	 * according to the method used in the real Enigma Machine
+	 */
 	public static TuringMachine buildEqualBinaryWords() {
 		TuringMachine newTM = new TuringMachine();
 		newTM.addState("q1");
