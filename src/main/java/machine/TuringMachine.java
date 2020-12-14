@@ -16,14 +16,14 @@ public class TuringMachine {
 	private String currentState;
 	private int currentSymbol;
 
-	class Transition {
+	class Transition { 
 		String readState;
 		char readSymbol;
 		String writeState;
 		char writeSymbol;
 		boolean moveDirection; // true is right, false is left
 
-		boolean isConflicting(String state, char symbol) {
+		boolean isConflicting(String state, char symbol) { //fonction qui permet de savoir si l'etat et le symbol en parametres sont egaux à l'etat et au symbol actuel
 			if (state.equals(readState) && symbol == readSymbol) {
 				return true;
 			} else {
@@ -32,7 +32,7 @@ public class TuringMachine {
 		}
 	}
 
-	public TuringMachine() {
+	public TuringMachine() { //Constructeur
 		stateSpace = new HashSet<String>();
 		transitionSpace = new HashSet<Transition>();
 		startState = new String("");
@@ -43,11 +43,11 @@ public class TuringMachine {
 		currentSymbol = 0;
 	}
 
-	public boolean run(String input, boolean silentmode) {
+	public boolean run(String input, boolean silentmode) { //fonction de lancement de la machine
 		currentState = startState;
 		tape = input;
 
-		while (!currentState.equals(acceptState) && !currentState.equals(rejectState)) {
+		while (!currentState.equals(acceptState) && !currentState.equals(rejectState)) { //Si l'etat actuel n'est ni le dernier ni l'etat interdit
 			boolean foundTransition = false;
 			Transition CurrentTransition = null;
 
@@ -104,7 +104,7 @@ public class TuringMachine {
 
 	}
 
-	public boolean addState(String newState) {
+	public boolean addState(String newState) { //fonction qui ajoute l'etat "newState" dans stateSpace, mais seulement si cet etat n'est pas dejà present, sinon il return false
 		if (stateSpace.contains(newState)) {
 			return false;
 		} else {
@@ -113,7 +113,7 @@ public class TuringMachine {
 		}
 	}
 
-	public boolean setStartState(String newStartState) {
+	public boolean setStartState(String newStartState) { //fonction qui permet de definir l'etat de debut, si il est present dans stateSpace, sinon il return false
 		if (stateSpace.contains(newStartState)) {
 			startState = newStartState;
 			return true;
@@ -122,7 +122,7 @@ public class TuringMachine {
 		}
 	}
 
-	public boolean setAcceptState(String newAcceptState) {
+	public boolean setAcceptState(String newAcceptState) { //fonction qui permet de definir l'etat de fin, si il est present dans stateSpace et si il est different de l'etat interdit
 		if (stateSpace.contains(newAcceptState) && !rejectState.equals(newAcceptState)) {
 			acceptState = newAcceptState;
 			return true;
@@ -132,7 +132,7 @@ public class TuringMachine {
 
 	}
 
-	public boolean setRejectState(String newRejectState) {
+	public boolean setRejectState(String newRejectState) { //permet de definir l'etat interdit
 		if (stateSpace.contains(newRejectState) && !acceptState.equals(newRejectState)) {
 			rejectState = newRejectState;
 			return true;
@@ -141,23 +141,23 @@ public class TuringMachine {
 		}
 	}
 
-	public boolean addTransition(String rState, char rSymbol, String wState, char wSymbol, boolean mDirection) {
-		if (!stateSpace.contains(rState) || !stateSpace.contains(wState)) {
+	public boolean addTransition(String rState, char rSymbol, String wState, char wSymbol, boolean mDirection) { //ajout d'une transition dans le hashSet "transitionSpace"
+		if (!stateSpace.contains(rState) || !stateSpace.contains(wState)) { //Si la liste des etats ne continent pas d'etat de lecture ni d'ecriture, cette transition ne peut pas etre ajoutée
 			return false;
 		}
 
 		boolean conflict = false;
 		Iterator<Transition> TransitionsIterator = transitionSpace.iterator();
-		while (TransitionsIterator.hasNext() && conflict == false) {
+		while (TransitionsIterator.hasNext() && conflict == false) { //Si l'iterateur possede encore des elements aprés, et si l'element d'apres ne crée pas de conflits
 			Transition nextTransition = TransitionsIterator.next();
-			if (nextTransition.isConflicting(rState, rSymbol)) {
+			if (nextTransition.isConflicting(rState, rSymbol)) { 
 				conflict = true;
 			}
 
 		}
 		if (conflict == true) {
 			return false;
-		} else {
+		} else { //On ajoute la transition
 			Transition newTransition = new Transition();
 			newTransition.readState = rState;
 			newTransition.readSymbol = rSymbol;
