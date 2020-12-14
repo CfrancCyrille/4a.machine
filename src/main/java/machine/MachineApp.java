@@ -11,13 +11,15 @@ public class MachineApp {
 
 	}
 	
+	/** runMachine mais sans silentMode  */
 	public static String runMachine(TuringMachine turingMachine1, String prog) {
 		return runMachine(turingMachine1, prog, false);
 	}
 
-	public static String runMachine(TuringMachine turingMachine1, String prog, boolean sillentMode) {
+	/** Fonction pour demarrer la machine */
+	public static String runMachine(TuringMachine turingMachine1, String prog, boolean silentMode) {
 		String res="";
-		boolean done = turingMachine1.run(prog, false);
+		boolean done = turingMachine1.run(prog, silentMode);
 		if (done == true) {
 			res = "The input was accepted.";
 		} 
