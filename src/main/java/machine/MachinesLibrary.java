@@ -1,7 +1,11 @@
 package machine;
 
 public final class MachinesLibrary {
-
+        
+        /**
+         * Permet de générer une nouvelle TuringMachine et d'initialiser ses états
+         * @return objet TuringMachine
+         */
 	public static TuringMachine buildEqualBinaryWords() {
 		TuringMachine newTM = new TuringMachine();
 		newTM.addState("q1");
