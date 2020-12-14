@@ -8,7 +8,7 @@ public class TuringMachine {
 
 	private Set<String> stateSpace;
 	private Set<Transition> transitionSpace;
-	private String startState;
+	private String startState; //etat de départ
 	private String acceptState;
 	private String rejectState;
 
@@ -17,9 +17,9 @@ public class TuringMachine {
 	private int currentSymbol;
 
 	class Transition {
-		String readState;
+		String readState; //lecture de l'etat
 		char readSymbol;
-		String writeState;
+		String writeState; //lecture de l'etat
 		char writeSymbol;
 		boolean moveDirection; // true is right, false is left
 
@@ -31,10 +31,12 @@ public class TuringMachine {
 			}
 		}
 	}
-
+		/**
+		 * Constructeur de la machine
+		 */
 	public TuringMachine() {
-		stateSpace = new HashSet<String>();
-		transitionSpace = new HashSet<Transition>();
+		stateSpace = new HashSet<String>(); //Hashage
+		transitionSpace = new HashSet<Transition>(); //Hashage
 		startState = new String("");
 		acceptState = new String("");
 		rejectState = new String("");
@@ -42,16 +44,21 @@ public class TuringMachine {
 		currentState = new String("");
 		currentSymbol = 0;
 	}
-
+	/**
+	 * Fonction principale
+	 * @param input a chiffrer
+	 * @param silentmode active les retour dans la console
+	 * @return true si la fonction c'est bien déroulé ou false sinon
+	 */
 	public boolean run(String input, boolean silentmode) {
 		currentState = startState;
 		tape = input;
 
-		while (!currentState.equals(acceptState) && !currentState.equals(rejectState)) {
-			boolean foundTransition = false;
+		while (!currentState.equals(acceptState) && !currentState.equals(rejectState)) { // tant que l'etat actuel est different de acceptState et que l'etat actuel est different de rejectState
+			boolean foundTransition = false; //bool pour un arret
 			Transition CurrentTransition = null;
 
-			if (silentmode == false) {
+			if (silentmode == false) { //ecriture sur la console
 				if (currentSymbol > 0) {
 					System.out.println(tape.substring(0, currentSymbol) + " " + currentState + " "
 							+ tape.substring(currentSymbol));
@@ -61,7 +68,7 @@ public class TuringMachine {
 			}
 
 			Iterator<Transition> TransitionsIterator = transitionSpace.iterator();
-			while (TransitionsIterator.hasNext() && foundTransition == false) {
+			while (TransitionsIterator.hasNext() && foundTransition == false) { 
 				Transition nextTransition = TransitionsIterator.next();
 				if (nextTransition.readState.equals(currentState)
 						&& nextTransition.readSymbol == tape.charAt(currentSymbol)) {
@@ -103,7 +110,11 @@ public class TuringMachine {
 		}
 
 	}
-
+	/**
+	 * Fonciton pour ajouter un etat
+	 * @param newState ajout d'un etat
+	 * @return renvoi true si l'etat n'existait pas, false sinon
+	 */
 	public boolean addState(String newState) {
 		if (stateSpace.contains(newState)) {
 			return false;
@@ -113,6 +124,11 @@ public class TuringMachine {
 		}
 	}
 
+	/**
+	 * Fonction pour definir l'etat de depart
+	 * @param newStartState ajout d'un etat de depart
+	 * @return renvoi true si l'etat n'existait pas, false sinon
+	 */
 	public boolean setStartState(String newStartState) {
 		if (stateSpace.contains(newStartState)) {
 			startState = newStartState;
@@ -122,6 +138,11 @@ public class TuringMachine {
 		}
 	}
 
+	/**
+	 * Defini AcceptState
+	 * @param newAcceptState etat accepter
+	 * @return renvoi true si l'etat n'existait pas, false sinon
+	 */
 	public boolean setAcceptState(String newAcceptState) {
 		if (stateSpace.contains(newAcceptState) && !rejectState.equals(newAcceptState)) {
 			acceptState = newAcceptState;
@@ -131,7 +152,11 @@ public class TuringMachine {
 		}
 
 	}
-
+	/**
+	 * Defini un etat de rejet
+	 * @param newRejectState Etat
+	 * @return renvoi true si l'etat n'existait pas, false sinon
+	 */
 	public boolean setRejectState(String newRejectState) {
 		if (stateSpace.contains(newRejectState) && !acceptState.equals(newRejectState)) {
 			rejectState = newRejectState;
@@ -141,6 +166,15 @@ public class TuringMachine {
 		}
 	}
 
+	/**
+	 * permet de faire une transition d'etat
+	 * @param rState etat pour lire
+	 * @param rSymbol symbol pour lire
+	 * @param wState etat pour ecrire
+	 * @param wSymbol symbol pour ecrire
+	 * @param mDirection direction true ou false
+	 * @return True si c'est bon , false sinon
+	 */
 	public boolean addTransition(String rState, char rSymbol, String wState, char wSymbol, boolean mDirection) {
 		if (!stateSpace.contains(rState) || !stateSpace.contains(wState)) {
 			return false;
