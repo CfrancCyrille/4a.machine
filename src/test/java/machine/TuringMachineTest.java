@@ -80,7 +80,7 @@ public class TuringMachineTest {
     public void testaddtransitionFalse(){
         Boolean expected = false;
         Boolean result;
-        TuringMachine turingMachine1 = MachinesLibrary.buildEqualBinaryWords(); //marche pas
+        TuringMachine turingMachine1 = MachinesLibrary.buildEqualBinaryWords(); 
         result=turingMachine1.addTransition("q1", '#', "q3", '#', true);
         assertEquals(expected, result);
     }
@@ -89,7 +89,7 @@ public class TuringMachineTest {
     public void testaddtransitionTrue(){
         Boolean expected = true;
         Boolean result;
-        TuringMachine turingMachine1 = MachinesLibrary.buildEqualBinaryWords(); //marche pas
+        TuringMachine turingMachine1 = MachinesLibrary.buildEqualBinaryWords();
         result=turingMachine1.addTransition("qa", '1', "q1", 'x', true);
         assertEquals(expected, result);
     }
