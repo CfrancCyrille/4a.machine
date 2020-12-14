@@ -4,8 +4,14 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class TuringMachine {
+/**
+ * 
+ * Implementation of TuringMachine class which will use Enigma
+ *
+ */
 
+public class TuringMachine {
+	
 	private Set<String> stateSpace;
 	private Set<Transition> transitionSpace;
 	private String startState;

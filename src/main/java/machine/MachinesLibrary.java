@@ -1,5 +1,12 @@
 package machine;
 
+/**
+ * 
+ * Initialization of states, definition of accepted and rejected state
+ * Definition of transition
+ *
+ */
+
 public final class MachinesLibrary {
 
 	public static TuringMachine buildEqualBinaryWords() {
