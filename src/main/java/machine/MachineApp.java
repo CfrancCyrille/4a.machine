@@ -11,10 +11,23 @@ public class MachineApp {
 
 	}
 	
+        /**
+         * Permet de run la machine sans avoir à paramétré le paramètre sillentMode qui sera à FALSE
+         * @param turingMachine1 objet TuringMachine
+         * @param prog String -> message à encoder
+         * @return String -> message encodé
+         */
 	public static String runMachine(TuringMachine turingMachine1, String prog) {
 		return runMachine(turingMachine1, prog, false);
 	}
 
+        /**
+         * Permet de run la machine et de paramétré le paramètre sillentMode
+         * @param turingMachine1 objet TuringMachine
+         * @param prog String -> message à encoder
+         * @param sillentMode boolean qui permet d'afficher des informations suplémentire dans la consol
+         * @return String -> message encodé
+         */
 	public static String runMachine(TuringMachine turingMachine1, String prog, boolean sillentMode) {
 		String res="";
 		boolean done = turingMachine1.run(prog, false);
