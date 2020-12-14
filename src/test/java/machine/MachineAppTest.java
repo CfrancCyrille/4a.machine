@@ -6,6 +6,10 @@ import org.junit.Test;
 
 public class MachineAppTest {
 
+
+
+
+
 	@Test
 	public void test() {
 		MachineApp.main(new String[0]);

@@ -2,6 +2,10 @@ package machine;
 
 public final class MachinesLibrary {
 
+	/**
+	 *
+	 * @return une nouvelle TuringMachine
+	 */
 	public static TuringMachine buildEqualBinaryWords() {
 		TuringMachine newTM = new TuringMachine();
 		newTM.addState("q1");
