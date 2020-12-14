@@ -4,11 +4,18 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * 
+ * On créer la classe qui correspond à la machine d'Enigme
+ * 
+ * @author Mikrail
+ *
+ */
 public class TuringMachine {
 
-	private Set<String> stateSpace;
+	private Set<String> stateSpace; 
 	private Set<Transition> transitionSpace;
-	private String startState;
+	private String startState;	
 	private String acceptState;
 	private String rejectState;
 
@@ -16,6 +23,13 @@ public class TuringMachine {
 	private String currentState;
 	private int currentSymbol;
 
+	/**
+	 * 
+	 * On créer une classe transition que l'on utilisera à l'intérieur de la classe de décodage
+	 * 
+	 * @author Mikrail
+	 *
+	 */
 	class Transition {
 		String readState;
 		char readSymbol;
@@ -32,6 +46,9 @@ public class TuringMachine {
 		}
 	}
 
+	/**
+	 * Constructeur de la machine de turing
+	*/
 	public TuringMachine() {
 		stateSpace = new HashSet<String>();
 		transitionSpace = new HashSet<Transition>();
@@ -43,6 +60,14 @@ public class TuringMachine {
 		currentSymbol = 0;
 	}
 
+	/**
+	 * 
+	 * Cette fonction permet de lancer le décodage de l'entrée "input" 
+	 * 
+	 * @param input
+	 * @param silentmode
+	 * @return
+	*/
 	public boolean run(String input, boolean silentmode) {
 		currentState = startState;
 		tape = input;
@@ -104,6 +129,13 @@ public class TuringMachine {
 
 	}
 
+	/**
+	 * 
+	 * On ajoute un etat à décoder 
+	 * 
+	 * @param newState
+	 * @return
+	*/
 	public boolean addState(String newState) {
 		if (stateSpace.contains(newState)) {
 			return false;
@@ -113,6 +145,12 @@ public class TuringMachine {
 		}
 	}
 
+	/**
+	 * On change le premier etat
+	 * 
+	 * @param newStartState
+	 * @return
+	 */
 	public boolean setStartState(String newStartState) {
 		if (stateSpace.contains(newStartState)) {
 			startState = newStartState;
@@ -122,6 +160,13 @@ public class TuringMachine {
 		}
 	}
 
+	/**
+	 * 
+	 * Permet de changer d'état si la transition est possible
+	 * 
+	 * @param newAcceptState
+	 * @return
+	 */
 	public boolean setAcceptState(String newAcceptState) {
 		if (stateSpace.contains(newAcceptState) && !rejectState.equals(newAcceptState)) {
 			acceptState = newAcceptState;
@@ -132,6 +177,11 @@ public class TuringMachine {
 
 	}
 
+	/**
+	 * 
+	 * @param newRejectState
+	 * @return
+	 */
 	public boolean setRejectState(String newRejectState) {
 		if (stateSpace.contains(newRejectState) && !acceptState.equals(newRejectState)) {
 			rejectState = newRejectState;
@@ -141,6 +191,17 @@ public class TuringMachine {
 		}
 	}
 
+	/**
+	 * 
+	 * Permet de passer d'ajouter une transition entre les etats
+	 * 
+	 * @param rState
+	 * @param rSymbol
+	 * @param wState
+	 * @param wSymbol
+	 * @param mDirection
+	 * @return
+	 */
 	public boolean addTransition(String rState, char rSymbol, String wState, char wSymbol, boolean mDirection) {
 		if (!stateSpace.contains(rState) || !stateSpace.contains(wState)) {
 			return false;
