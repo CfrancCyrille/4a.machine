@@ -2,6 +2,12 @@ package machine;
 
 public final class MachinesLibrary {
 
+	/**
+	 * 
+	 * La méthode permet de changer l'état les états d'entrée pour décoder le code
+	 * 
+	 * @return
+	*/
 	public static TuringMachine buildEqualBinaryWords() {
 		TuringMachine newTM = new TuringMachine();
 		newTM.addState("q1");
