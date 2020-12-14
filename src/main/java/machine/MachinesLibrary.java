@@ -2,6 +2,10 @@ package machine;
 
 public final class MachinesLibrary {
 
+	/**
+	 * Crée tous les états existants et définies les états acceptés et rejetés. Définie également les transitions entre les entrées
+	 * @return la machine de Turing avec les transitions et les états
+	 */
 	public static TuringMachine buildEqualBinaryWords() {
 		TuringMachine newTM = new TuringMachine();
 		newTM.addState("q1");
