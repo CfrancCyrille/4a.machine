@@ -3,6 +3,7 @@ package machine;
 public final class MachinesLibrary {
 
 	public static TuringMachine buildEqualBinaryWords() {
+		/** Creation d'une nouvelle machine de Turing*/ 
 		TuringMachine newTM = new TuringMachine();
 		newTM.addState("q1");
 		newTM.addState("q2");
