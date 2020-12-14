@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * Notre classe pour la machine de Turing
+ */
 public class TuringMachine {
 
 	private Set<String> stateSpace;
@@ -16,6 +19,9 @@ public class TuringMachine {
 	private String currentState;
 	private int currentSymbol;
 
+	/**
+	 * class transition
+	 */
 	class Transition {
 		String readState;
 		char readSymbol;
@@ -23,6 +29,12 @@ public class TuringMachine {
 		char writeSymbol;
 		boolean moveDirection; // true is right, false is left
 
+		/**
+		 * Compare deux states et deux symboles
+		 * @param state
+		 * @param symbol
+		 * @return true si les états ET les symboles sont les mêmes
+		 */
 		boolean isConflicting(String state, char symbol) {
 			if (state.equals(readState) && symbol == readSymbol) {
 				return true;
@@ -32,6 +44,10 @@ public class TuringMachine {
 		}
 	}
 
+	/**
+	 * constructeur de notre machine de Turing
+	 * il est utilisé dans MachineLibrairy
+	 */
 	public TuringMachine() {
 		stateSpace = new HashSet<String>();
 		transitionSpace = new HashSet<Transition>();
@@ -43,6 +59,12 @@ public class TuringMachine {
 		currentSymbol = 0;
 	}
 
+	/**
+	 * Code notre méssage
+	 * @param input
+	 * @param silentmode
+	 * @return
+	 */
 	public boolean run(String input, boolean silentmode) {
 		currentState = startState;
 		tape = input;
@@ -104,6 +126,11 @@ public class TuringMachine {
 
 	}
 
+	/**
+	 * Ajoute un état a notre machine
+	 * @param newState state à ajouter
+	 * @return true si le state a bien été ajouté
+	 */
 	public boolean addState(String newState) {
 		if (stateSpace.contains(newState)) {
 			return false;
@@ -113,6 +140,11 @@ public class TuringMachine {
 		}
 	}
 
+	/***
+	 * Définir le premier state de la machine
+	 * @param newStartState nouveau start state
+	 * @return true si le premier state a bien été mis à jour
+	 */
 	public boolean setStartState(String newStartState) {
 		if (stateSpace.contains(newStartState)) {
 			startState = newStartState;
@@ -122,6 +154,11 @@ public class TuringMachine {
 		}
 	}
 
+	/**
+	 * Modifier le acceptState
+	 * @param newAcceptState nouveau acceptState
+	 * @return true si le acceptState a bien été modifié
+	 */
 	public boolean setAcceptState(String newAcceptState) {
 		if (stateSpace.contains(newAcceptState) && !rejectState.equals(newAcceptState)) {
 			acceptState = newAcceptState;
@@ -132,6 +169,11 @@ public class TuringMachine {
 
 	}
 
+	/***
+	 * Modifier le rejectState
+	 * @param newRejectState nouveau rejectState
+	 * @return true si le rejectState a bien été modfié
+	 */
 	public boolean setRejectState(String newRejectState) {
 		if (stateSpace.contains(newRejectState) && !acceptState.equals(newRejectState)) {
 			rejectState = newRejectState;
@@ -141,6 +183,15 @@ public class TuringMachine {
 		}
 	}
 
+	/**
+	 * Ajouter une transition à transitionSpace si il n'y a pas de conflit
+	 * @param rState  read state
+	 * @param rSymbol read symbol
+	 * @param wState writ state
+	 * @param wSymbol write symbol
+	 * @param mDirection direction, true pour droite, false pour gauche
+	 * @return true si la transition a été ajoutée
+	 */
 	public boolean addTransition(String rState, char rSymbol, String wState, char wSymbol, boolean mDirection) {
 		if (!stateSpace.contains(rState) || !stateSpace.contains(wState)) {
 			return false;
