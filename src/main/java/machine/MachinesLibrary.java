@@ -1,7 +1,10 @@
 package machine;
 
 public final class MachinesLibrary {
-
+	/**
+	 * Cree un mot binaire de base pour pouvoir chiffrer, defini les rotors pour le chiffrage
+	 * @return une nouvelle machine de turing
+	 */
 	public static TuringMachine buildEqualBinaryWords() {
 		TuringMachine newTM = new TuringMachine();
 		newTM.addState("q1");
