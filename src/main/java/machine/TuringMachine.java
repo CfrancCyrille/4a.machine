@@ -162,7 +162,7 @@ public class TuringMachine {
 
 	/**
 	 * 
-	 * 
+	 * Permet de changer d'état si la transition est possible
 	 * 
 	 * @param newAcceptState
 	 * @return
@@ -192,6 +192,8 @@ public class TuringMachine {
 	}
 
 	/**
+	 * 
+	 * Permet de passer d'ajouter une transition entre les etats
 	 * 
 	 * @param rState
 	 * @param rSymbol

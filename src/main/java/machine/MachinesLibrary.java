@@ -4,7 +4,8 @@ public final class MachinesLibrary {
 
 	/**
 	 * 
-	 * La méthode permet de changer l'état les états d'entrée pour décoder le code
+	 * La méthode permet de donner le changement d'état possible des états d'entrée pour décoder le code 
+	 * 
 	 * 
 	 * @return
 	*/
